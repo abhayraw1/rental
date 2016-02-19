@@ -19,6 +19,10 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class PagesController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function home()
+    {
+    	return \View::make('index');
+    }
 	public function login()
 	{
 		return\View::make('login');
