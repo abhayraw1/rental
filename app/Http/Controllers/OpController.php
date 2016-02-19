@@ -40,5 +40,4 @@ class OpController extends BaseController
 		}
 	}
 
-	
 }
