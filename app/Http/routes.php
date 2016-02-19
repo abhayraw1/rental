@@ -7,7 +7,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('login',array('as'=>'login','uses'=>'PagesController@login'));
 	Route::get('logout',array('as'=>'logout','uses'=>'PagesController@logout'));
 	Route::get('/', function(){
-		return 'root';
+		return time();
 	});
 	Route::get('signup',array('as'=>'signup','uses'=>'PagesController@signup'));
 
@@ -19,5 +19,5 @@ Route::group(['middleware' => ['web']], function () {
 
 
 
-	
+
 });
