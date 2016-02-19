@@ -14,8 +14,8 @@ class ChangeUserDetailTable extends Migration
     {
         Schema::table('user_details', function ($table) {
             $table->foreign('college_id')->references('id')->on('college')->onDelete('cascade');
-    
-});    }
+        });   
+    }
 
     /**
      * Reverse the migrations.
@@ -25,4 +25,4 @@ class ChangeUserDetailTable extends Migration
     public function down()
     {
         $table->dropForeign('user_details_college_id_foreign');    }
-}
+    }

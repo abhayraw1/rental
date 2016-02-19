@@ -18,7 +18,7 @@ class Notification extends Migration
             $table->foreign('to')->references('id')->on('users')->onDelete('cascade');
             $table->integer('from')->length(10)->unsigned();
             $table->foreign('from')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamp('added_on');
+            $table->string('added_on');
             $table->boolean('read');
             $table->smallInteger('lent_rent');
         });
@@ -31,6 +31,6 @@ class Notification extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('notification');
     }
 }
