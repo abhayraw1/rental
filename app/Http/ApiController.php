@@ -61,12 +61,11 @@ class ApiController extends BaseController
 			$userdetail->college = $collegeid;
 			$user_sign=User::whereemail(Input::get('email'))->first();
 			\Auth::login($user_sign);
-			return Redirect::to('dashboard')->with('message','Successfully Registered! Now you are logged in!');
+			return "1";
 		}	
 		else{
 
-			return Redirect::to('signup')->withErrors($validation->errors())->withInput();
-		}
+			return "0"	}
 	}
 	public function logout()
 	{
@@ -74,11 +73,11 @@ class ApiController extends BaseController
 		{
 			\Auth::logout();
 		
-			return Redirect::to('/')->with('message','Successfully Logged Out!'); 
+			return "1" ; 
 		}
 		else
 		{
-			return Redirect::to('login')->with('message','You need to login first!'); 
+			return "0"; 
 		}
 	}
 }
