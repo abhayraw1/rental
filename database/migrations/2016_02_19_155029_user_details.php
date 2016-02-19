@@ -34,4 +34,4 @@ class UserDetails extends Migration
     {
         Schema::drop('user_details');
     }
-}
+}   
