@@ -24,14 +24,9 @@ class PagesController extends BaseController
 		return\View::make('login');
 	}
 	
-	public function signup1()
+	public function signup()
 	{
-		return\View::make('signupstep1');
-		
-	}
-	public function signup2()
-	{
-		return\View::make('signupstep2');
+		return\View::make('signup');
 		
 	}
 	public function  userlogin()
