@@ -56,24 +56,30 @@
           <form action="collegesearch" method="post">
             <input type="text" id="inp" name = "college" placeholder = "Search Your College"></input>
             {!!csrf_field()!!}
-
+            <a href="#" class="btn btn-large waves-effect waves-light green darken-2" id="btn3">Search</a>
           </form>
         </div>
         <div class="row">
           <div class="col s4 context sertxt">
-            <img src="img/upload.svg" class="svg">
-            <p class="svgtext">Post a Free Ad on your college marketplace to sell used books, novels, drafters etc. or to find flat/flatmates, arrange carpools</p>
+            <img src="img/college.svg" class="svg">
+            <p class="svgtext white-text">Select your college and open its marketplace from the search bar.</p>
           </div>
           <div class="col s4 verticalLine context sertxt">
-            <img src="img/chaticon.svg" class="svg">
-            <p class="svgtext">Your college peers interested in your Ad will message you using our in-built chat.</p>
+            <img src="img/search.svg" class="svg">
+            <p class="svgtext white-text">Browse through listed Ads. If interested in any Ad, chat with your peer who has posted that Ad.</p>
           </div>
           <div class="col s4 verticalLine context sertxt">
             <img src="img/meet.svg" class="svg">
-            <p class="svgtext">Meet the person (your college peer/junior/senior) inside the campus to complete the deal.</p>
+            <p class="svgtext white-text">Meet the person (your college peer/junior/senior) inside the campus to complete the deal.</p>
           </div>
         </div>
       </div>
+
+      <footer id="foo">
+        <div id="fav">
+          <i class="mdi mdi-facebook"></i>
+        </div>
+      </footer>
 
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

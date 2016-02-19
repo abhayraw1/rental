@@ -48,18 +48,25 @@
 	width: 650px;
 }
 #search {
-	height: 500px;
+	height: 600px;
 	background-color: #6C6C6C;
 }
 #inp {
 	position: relative;
-	width: 350px;
-	padding-left: 300px;
+	width: 650px;
 	top: 60px;
 	left: 400px;
 	border-width: 2px;
 	background-color: white;
 }
 .sertxt {
-	top: 20px;
+	position: relative;
+	top: 120px;
+}
+#btn3 {
+	top: 120px;
+}
+#foo {
+	background-color: black;
+	height: 400px;
 }
