@@ -16,24 +16,9 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class PagesController extends BaseController
+class ApiController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-	public function login()
-	{
-		return\View::make('login');
-	}
-	
-	public function signup1()
-	{
-		return\View::make('signupstep1');
-		
-	}
-	public function signup2()
-	{
-		return\View::make('signupstep2');
-		
-	}
 	public function  userlogin()
 	{
 		$user=array(
@@ -43,11 +28,20 @@ class PagesController extends BaseController
 
 		if(\Auth::attempt($user))
 		{
-			return Redirect::to('dashboard')->with('message','Successfully Logged In!');
+			$userdetail = "";
+			$userdetail.= UserDetail::where('email',$user['email'])->pluck('name');
+			$userdetail.=",";
+			$college = College::where('id',UserDetail::where('email',$user['email'])->pluck('college'))->pluck('college_name');
+			$userdetail.= ;
+			$userdetail.=",";
+			$userdetail.= UserDetail::where('email',$user['email'])->pluck('email');
+			$userdetail.=",";
+			$userdetail.= UserDetail::where('email',$user['email'])->pluck('contact');
+
+			return $userdetail;
 		}
 		else{
-			return Redirect::to('login')->with('message','Your email/password combination is incorrect!')->withInput();
-
+			return "";
 		}
 	}
 	public function  usersignup()
@@ -55,6 +49,7 @@ class PagesController extends BaseController
 		$validation=User::validate(Input::all());
 		if($validation->passes())
 		{
+			$data = Input::all();
 			$user = array(
 				'email'=>Input::get('email'),
 				'password'=>\Hash::make(Input::get('password')));
@@ -69,6 +64,7 @@ class PagesController extends BaseController
 			return Redirect::to('dashboard')->with('message','Successfully Registered! Now you are logged in!');
 		}	
 		else{
+
 			return Redirect::to('signup')->withErrors($validation->errors())->withInput();
 		}
 	}
