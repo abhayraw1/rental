@@ -7,7 +7,9 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class PagesController extends BaseController
+class OpController extends BaseController
 {
-
+	public function notification(){
+		
+	}
 }
