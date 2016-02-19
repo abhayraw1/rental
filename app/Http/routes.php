@@ -12,6 +12,7 @@ Route::group(['middleware' => ['web']], function () {
 		return time();
 	});
 	Route::get('signup',array('as'=>'signup','uses'=>'PagesController@signup'));
+	Route::get('autocompletecollege',array('as'=>'autocompletecollege','uses'=>'DashController@autocompletecollege'));
 
 
 	Route::post('usersignup',array('before'=>'csrf','uses'=>'PagesController@usersignup'));

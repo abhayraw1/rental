@@ -54,9 +54,9 @@
             <h4 id="subhead">FIND ADS IN AND AROUND YOUR COLLEGE</h4>
           </div>
           <form action="collegesearch" method="post">
-            <input type="text" id="inp" name = "college" placeholder = "Search Your College"></input>
+            <input type="text" id="inp" name = "college" class ="auto" placeholder = "Search Your College"></input>
             {!!csrf_field()!!}
-            <a href="#" class="btn btn-large waves-effect waves-light green darken-2" id="btn3">Search</a>
+            <button  class="btn btn-large waves-effect waves-light green darken-2" id="btn3">Search</button>
           </form>
         </div>
         <div class="row">
@@ -85,5 +85,25 @@
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
+
+<script type="text/javascript">
+
+
+    //autocomplete
+    $(".auto").autocomplete({
+        source: "{{URL::asset('autocompletecollege')}}",
+        minLength: 3,
+        select: function(event,ui)
+        {
+            $('.auto').val(ui.item.value);
+             
+  
+        } 
+    
+    });
+
+</script>
+
+
     </body>
   </html>

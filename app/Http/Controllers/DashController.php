@@ -6,6 +6,7 @@ use App\UserDetail;
 use App\College;
 use App\Lend;
 use View;
+use Response;
 use Redirect;
 use Session;
 use Auth;
@@ -22,9 +23,9 @@ class DashController extends BaseController
  {
   $data = Input::get('term');
   $resp = array();
-  $queries = College::where('name','like','%'.$data.'%' )->take(10)->get();
+  $queries = College::where('college_name','like','%'.$data.'%' )->orWhere('SKU','like','%'.$data.'%' )->take(10)->get();
   foreach ($queries as $query) {
-    $resp[] = $query->name;
+    $resp[] = $query->college_name;
   }
   return Response::json($resp);
  }
