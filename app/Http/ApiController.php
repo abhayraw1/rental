@@ -46,8 +46,18 @@ class ApiController extends BaseController
 	}
 	public function  usersignup()
 	{
-		$validation=User::validate(Input::all());
-		if($validation->passes())
+		
+$rules=array(
+'name'=>'min:2',
+'email'=>'required|unique:users',
+'password'=>'required|min:4|confirmed',
+'password_confirmation'=>'required|min:4'
+
+
+
+);
+   $validation = Validator::make($data, $rules);
+if($validation->passes())
 		{
 			$data = Input::all();
 			$user = array(
@@ -80,4 +90,23 @@ class ApiController extends BaseController
 			return "0"; 
 		}
 	}
+
+ public function collegesearch()
+ {
+
+ 	$search = Input::get('college');
+ 	$college = College::where('college_name',$search)->orWhere('SKU',$search)->first();
+ 	 if($college)
+ 	 {
+ 	 	$products = Product::where('user_id',UserDetail::where('',))
+
+ 	 }
+ 	 else
+ 	 {
+ 	 	Session::put('message',"College Not Found");
+ 	 
+ 	 	return Redirect::to('/');
+ 	 }
+
+ }
 }

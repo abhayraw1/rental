@@ -51,8 +51,17 @@ class PagesController extends BaseController
 	}
 	public function  usersignup()
 	{
-		$validation=User::validate(Input::all());
-		if($validation->passes())
+$rules=array(
+'name'=>'min:2',
+'email'=>'required|unique:users',
+'password'=>'required|min:4|confirmed',
+'password_confirmation'=>'required|min:4'
+
+
+
+);
+   $validation = Validator::make($data, $rules);
+	if($validation->passes())
 		{
 			$user = array(
 				'email'=>Input::get('email'),
