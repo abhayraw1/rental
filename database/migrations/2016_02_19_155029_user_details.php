@@ -13,13 +13,15 @@ class UserDetails extends Migration
     public function up()
     {
         Schema::create('user_details', function (Blueprint $table) {
+            $table->engine = "InnoDB"; 
             $table->increments('id');
             $table->string('email');
             $table->foreign('email')->references('email')->on('users')->onDelete('cascade');
-            $table->string('college');
+            $table->integer('college_id')->length(10)->unsigned();
             $table->string('contact', 10);
             $table->string('name');
             $table->timestamps();
+
         });
     }
 
