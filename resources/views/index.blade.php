@@ -53,7 +53,7 @@
           <div class="col s12 offset-s3 white-text">
             <h4 id="subhead">FIND ADS IN AND AROUND YOUR COLLEGE</h4>
           </div>
-          <form action="collegesearch">
+          <form action="collegesearch" method="post">
             <input type="text" id="inp" name = "college" placeholder = "Search Your College"></input>
             {!!csrf_field()!!}
 

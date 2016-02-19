@@ -9,7 +9,7 @@ use View;
 use Redirect;
 use Session;
 use Auth;
-use Input;
+use Illuminate\Support\Facades\Input;
 use DB;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

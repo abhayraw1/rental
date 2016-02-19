@@ -9,7 +9,7 @@ use View;
 use Redirect;
 use Session;
 use Auth;
-use Input;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -48,7 +48,9 @@ class DashController extends BaseController
  	 }
  	 else
  	 {
-
+ 	 	Session::put('message',"College Not Found");
+ 	 
+ 	 	return Redirect::to('/');
  	 }
 
  }
