@@ -18,7 +18,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ApiController extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 	public function  userlogin()
 	{
 		$user=array(
@@ -44,20 +44,22 @@ class ApiController extends BaseController
 			return "";
 		}
 	}
+
+
 	public function  usersignup()
 	{
 		
-$rules=array(
-'name'=>'min:2',
-'email'=>'required|unique:users',
-'password'=>'required|min:4|confirmed',
-'password_confirmation'=>'required|min:4'
+		$rules=array(
+			'name'=>'min:2',
+			'email'=>'required|unique:users',
+			'password'=>'required|min:4|confirmed',
+			'password_confirmation'=>'required|min:4'
 
 
 
-);
-   $validation = Validator::make($data, $rules);
-if($validation->passes())
+			);
+		$validation = Validator::make($data, $rules);
+		if($validation->passes())
 		{
 			$data = Input::all();
 			$user = array(
@@ -75,14 +77,16 @@ if($validation->passes())
 		}	
 		else{
 
-			return "0"	}
+			return "0"	
+		}
 	}
+
 	public function logout()
 	{
 		if(\Auth::check())
 		{
 			\Auth::logout();
-		
+
 			return "1" ; 
 		}
 		else
@@ -91,22 +95,20 @@ if($validation->passes())
 		}
 	}
 
- public function collegesearch()
- {
 
- 	$search = Input::get('college');
- 	$college = College::where('college_name',$search)->orWhere('SKU',$search)->first();
- 	 if($college)
- 	 {
- 	 	$products = Product::where('user_id',UserDetail::where('',))
+	public function collegesearch()
+	{
 
- 	 }
- 	 else
- 	 {
- 	 	Session::put('message',"College Not Found");
- 	 
- 	 	return Redirect::to('/');
- 	 }
+		$search = Input::get('college');
+		$college = College::where('college_name',$search)->orWhere('SKU',$search)->first();
+		
+		if($college){
+			$products = Product::where('user_id',User::where('email',UserDetail::where('college',$search)->pluck('email'))->pluck('id'))->get();
+			return json_encode($products);
 
- }
+		}
+		return null;
+
+	}
+
 }
