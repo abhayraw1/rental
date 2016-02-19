@@ -16,9 +16,5 @@ class UserDetails extends Authenticatable
          'email','college','contact','name'
     ];
     protected $table = 'user_details';
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
+    
    }
