@@ -29,13 +29,13 @@
     <div class="grey lighten-2">
       <div class="row">
         <div class="col s12">
-          <h3 class="centre grey-text text-darken-2 centre">COLLEGE NAME</h3>
+          <h3 class="centre grey-text text-darken-2 centre">{{$clg}}</h3>
         </div>
       </div>
       <div class="row">
         <div class="col s5 offset-s3">
-          <form>
-            <input type="text" placeholder="Search Item" id="input"></input>
+          <form method = "post" action = "searchitem">
+            <input type="text" name="item" placeholder="Search Item" class = "auto" id="input"></input>
           </form>
         </div>
         <div class="col s3">
