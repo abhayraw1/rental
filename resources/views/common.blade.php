@@ -36,8 +36,8 @@
         email: $('input[name=email]', x).val(),
         password: $('input[name=password]', x).val(),
         college: $('input[name=college]', x).val(),
-        contact: $('input[name=contact]', x).val(),
-        _token: $('input[name=contact]', x).val()
+        contact: $('input[name=number]', x).val(),
+        _token: $('input[name=_token]', x).val()
       };
 
       var data2 = {
