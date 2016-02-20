@@ -96,7 +96,7 @@ if($validation->passes())
  	$college = College::where('college_name',$search)->orWhere('SKU',$search)->first();
  	 if($college)
  	 {
- 	 $products = Product::where('user_id',User::where('email',UserDetail::where('college',$search)->pluck('email'))->pluck('id'))->get();
+ 	 $products = Product::where('user_id',User::where('email',UserDetails::where('college',$search)->pluck('email'))->pluck('id'))->get();
  	 return json_encode($products);
  	 }
  	 return null;

@@ -103,7 +103,7 @@
     //autocomplete
     $(".auto").autocomplete({
       source: "{{URL::asset('autocompletecollege')}}",
-      minLength: 3,
+      minLength: 1,
       select: function(event,ui)
       {
         $('.auto').val(ui.item.value);
