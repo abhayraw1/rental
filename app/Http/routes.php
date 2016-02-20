@@ -1,5 +1,5 @@
 <?php
-
+use App\User;
 
 
 Route::group(['middleware' => ['web']], function () {
@@ -10,7 +10,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('dashboard',array('as'=>'dashboard','uses'=>'DashController@dashboard'));
 
 	Route::get('/ss', function(){
-		return time();
+		return User::all();
 	});
 	Route::get('signup',array('as'=>'signup','uses'=>'PagesController@signup'));
 	Route::get('autocompletecollege',array('as'=>'autocompletecollege','uses'=>'DashController@autocompletecollege'));
