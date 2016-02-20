@@ -42,13 +42,13 @@
         </div>
       </div>
     </div>
-
+    @if(count($products) == 0)
     <div class="row">
       <div class="col s6 offset-s3 red lighten-4">
         <p class="center-align red-text text-darken-2">No result found for your search!</p>
       </div>
     </div>
-
+    @endif
     <div class="container">
       <div class="row">
         <div class="col s12">

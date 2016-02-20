@@ -7,9 +7,31 @@
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
       <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" />
       <link type="text/css" rel="stylesheet" href="css/style2.css"  media="screen,projection"/>
-
+      <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $('#login-button').click(function(){
+            var x =$(this).parent();
+            var data = {email: $('input[name=email]', x).val(),
+                        password: $('input[name=password]', x).val(),
+                        _token: $('input[name=_token]', x).val()}
+            $.post('userlogin', data, function(response){
+              if(response == '1'){
+                console.log('sda');
+                window.location.href = window.location.href; 
+              }else{
+                console.log("asd");
+                $('.err1').show();
+              }
+            });
+            
+          });
+
+          $('.err1').hide();
+        });
+      </script>
     </head>
 
     <body>
@@ -30,9 +52,9 @@
             <li><a href="#!">My Rent History</a></li>
             <li><a href="#!">My Account</a></li>
             <li class="divider"></li>
-            <li><a href="#!">Sign Out</a></li>
+            <li><a href="logout">Sign Out</a></li>
           </ul>
-        @else
+          @else
           <li><a href="#modal2" class = "modal-trigger">SIGNUP</a></li>
           <li><a href="#modal3" class = "modal-trigger">LOGIN</a></li>
           <div id="modal2" class="modal">
@@ -40,14 +62,15 @@
                 <h3 class="center-align blue-text">SIGN UP</h3>
                 <div class="row">
                   <div class="col s12">
-                    <form class="center-align">
-                      <input type="text" placeholder="Name"></input>
-                      <input type="email" placeholder="Email ID"></input>
-                      <input type="password" placeholder="Password"></input>
-                      <input type="password" placeholder="Confirm Password"></input>
-                      <input type="text" placeholder="College"></input>
-                      <input type="number" placeholder="Contact"></input>
-                      <button class="btn btn-large blue">SUBMIT</button>
+                    <form class="center-align" method="post" action="usersignup">
+                      <input style="color:#000" type="text" name="name" placeholder="Name"></input>
+                      <input style="color:#000" type="email" name="email"placeholder="Email ID"></input>
+                      <input style="color:#000" type="password" name="password" placeholder="Password"></input>
+                      <input style="color:#000" type="password" placeholder="Confirm Password"></input>
+                      <input style="color:#000" type="text" name="college" placeholder="College"></input>
+                      <input style="color:#000" type="number" name="number" placeholder="Contact"></input>
+                      <input type='hidden' name="_token" value="{{ csrf_token() }}">
+                      <button type='submit' class="btn btn-large blue" >SUBMIT</button>
                     </form>
                   </div>
                 </div>
@@ -60,10 +83,13 @@
                 <h3 class="centre-align blue-text">LOGIN</h3>
                 <div class="row">
                   <div class="col s12">
-                    <form class="center-align">
-                      <input type="email" placeholder="Email ID"></input>
-                      <input type="password" placeholder="Password"></input>
-                      <button class="btn btn-large blue vertical-align">Login</button>
+                    <form class="center-align" method="post" action="userlogin">
+                      <input style="color:#000" type="email" name="email" placeholder="Email ID"></input>
+                      <input style="color:#000" type="password" name="password" placeholder="Password"></input>
+                      <input type='hidden' name="_token" value="{{ csrf_token() }}">
+                      <p class="center-align red-text text-darken-2 err1">
+                        What??<bt>Username and password don't match!!</p>
+                      <button type='button' class="btn btn-large blue vertical-align" id="login-button">Login</button>
                     </form>
                   </div>
                 </div>

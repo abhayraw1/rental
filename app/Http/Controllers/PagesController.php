@@ -43,10 +43,10 @@ class PagesController extends BaseController
 
 		if(\Auth::attempt($user)){
 			Session::put('email', $user['email']);
-			return Redirect::to('dashboard')->with('message','Successfully Logged In!');
+			return 1;
 		}
 		else{
-			return Redirect::to('login')->with('message','Your email/password combination is incorrect!')->withInput();
+			return 0;
 		}
 	}
 	public function  usersignup()
@@ -77,11 +77,9 @@ class PagesController extends BaseController
 			$userdetail->save();
 			$user_sign=User::whereemail(Input::get('email'))->first();
 			\Auth::login($user_sign);
-			return Redirect::to('dashboard')->with('message','Successfully Registered! Now you are logged in!');
-		}	
-		else{
-			return Redirect::to('signup')->withErrors($validation->errors())->withInput();
+			return 1;
 		}
+		return 0;
 	}
 	public function logout()
 	{

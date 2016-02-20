@@ -20,68 +20,68 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class DashController extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
- public function autocompletecollege()
- {
-  $data = Input::get('term');
-  $resp = array();
-  $queries = College::where('college_name','like','%'.$data.'%' )->orWhere('SKU','like','%'.$data.'%' )->take(10)->get();
-  foreach ($queries as $query) {
-    $resp[] = $query->college_name;
-  }
-  return Response::json($resp);
- }
- public function dashboard()
- {
- 	$clg = Session::get('college');
- 	$college = College::where('college_name',$clg)->first();
- 	if(!$clg)
+	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+	public function autocompletecollege()
 	{
-		$clg = "Null";
-	}
-	else{
-		$emails = UserDetails::where('college_id',$college->id)->get();
-		$email = array();
-		$user = array();
-		foreach ($emails as $em) {
-		$email[] = $em->email; 
+		$data = Input::get('term');
+		$resp = array();
+		$queries = College::where('college_name','like','%'.$data.'%' )->orWhere('SKU','like','%'.$data.'%' )->take(10)->get();
+		foreach ($queries as $query) {
+			$resp[] = $query->college_name;
 		}
-foreach ($email as $em) {
-		$user[] = User::where('email',$em)->get()[0]->id;
+		return Response::json($resp);
 	}
+	public function dashboard()
+	{
+		$clg = Session::get('college');
+		$college = College::where('college_name',$clg)->first();
+		if(!$clg)
+		{
+			$clg = "Null";
+		}
+		else{
+			$emails = UserDetails::where('college_id',$college->id)->get();
+			$email = array();
+			$user = array();
+			foreach ($emails as $em) {
+				$email[] = $em->email; 
+			}
+			foreach ($email as $em) {
+				$user[] = User::where('email',$em)->get()[0]->id;
+			}
 
-$products = array();
-$fpro = array();		
-$i=0;
-foreach ($user as $use) {
+			$products = array();
+			$fpro = array();		
+			$i=0;
+			foreach ($user as $use) {
 
-	 $products[$i] = Product::where('user_id',$use)->get();
-	 foreach ($products[$i] as $pro) {
-	 $fpro[] = Product::where('id',$pro->id)->get()[0]; 
-	 }
-	 $i++;
+				$products[$i] = Product::where('user_id',$use)->get();
+				foreach ($products[$i] as $pro) {
+					$fpro[] = Product::where('id',$pro->id)->get()[0]; 
+				}
+				$i++;
 
-}
+			}
+		}
+		return \View::make('dashboard',compact('clg','products'));
+
 	}
-	return \View::make('dashboard',compact('clg','products'));
+	public function collegesearch()
+	{
 
- }
- public function collegesearch()
- {
+		$search = Input::get('college');
+		$college = College::where('college_name',$search)->first();
+		if($college)
+		{
+			Session::put('college',$college->college_name);
+			return Redirect::to('dashboard');
+		}
+		else
+		{
+			Session::put('message',"College Not Found");
 
- 	$search = Input::get('college');
- 	$college = College::where('college_name',$search)->first();
- 	 if($college)
- 	 {
- 	 	Session::put('college',$college->college_name);
- 	 	return Redirect::to('dashboard');
- 	 }
- 	 else
- 	 {
- 	 	Session::put('message',"College Not Found");
- 	 
- 	 	return Redirect::to('mmmm');
- 	 }
+			return Redirect::to('mmmm');
+		}
 
- }
+	}
 }
