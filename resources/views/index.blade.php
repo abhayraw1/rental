@@ -132,13 +132,6 @@
       <script type="text/javascript" src="js/materialize.min.js"></script>
 
       <script type="text/javascript">
-      //autocomplete
-      $(".auto").autocomplete({
-        source: "{{URL::asset('autocompletecollege')}}",
-        minLength: 3,
-        select: function(event,ui)
-        {
-          $('.auto').val(ui.item.value);
     //autocomplete
     $(".auto").autocomplete({
       source: "{{URL::asset('autocompletecollege')}}",
@@ -148,9 +141,13 @@
         $('.auto').val(ui.item.value);
 
 
-        } 
+        }
 
       });
+      $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+          });
 
       </script>
 
