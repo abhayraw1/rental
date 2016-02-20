@@ -28,6 +28,7 @@
             <a class="btn-large waves-effect waves-light yellow darken-4 modal-trigger" href="#modal1">SIGNUP</a>&nbsp &nbsp
             <a class="btn-large waves-effect waves-light yellow darken-4 modal-trigger" href="#modal2">LOGIN</a>
 
+           
             <!--Modal1 structure-->
             <div id="modal1" class="modal">
               <div class="modal-content">
@@ -99,9 +100,10 @@
             <div class="col s12 offset-s3 white-text">
               <h4 id="subhead">FIND ADS IN AND AROUND YOUR COLLEGE</h4>
             </div>
-            <form action="#">
-              <input type="text" id="inp" class = "auto" placeholder=" Search your College"></input>
-              <a href="#" class="btn btn-large waves-effect waves-light green darken-2" id="btn3">Search</a>
+            <form action="collegesearch" method="post">
+              <input type="text" id="inp" class = "auto"  name="college" placeholder=" Search your College"></input>
+              {!!csrf_field()!!}
+              <button type = "submit"  class="btn btn-large waves-effect waves-light green darken-2" id="btn3">Search</button>
             </form>
           </div>
           <div class="row">
