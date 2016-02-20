@@ -19,11 +19,11 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class PagesController extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    public function home()
-    {
-    	return \View::make('index');
-    }
+	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+	public function home()
+	{
+		return \View::make('index');
+	}
 	public function login()
 	{
 		return\View::make('login');
@@ -41,33 +41,32 @@ class PagesController extends BaseController
 			'password'=>Input::get('password')
 			);
 
-		if(\Auth::attempt($user))
-		{
+		if(\Auth::attempt($user)){
+			Session::put('email', $user['email']);
 			return Redirect::to('dashboard')->with('message','Successfully Logged In!');
 		}
 		else{
 			return Redirect::to('login')->with('message','Your email/password combination is incorrect!')->withInput();
-
 		}
 	}
 	public function  usersignup()
 	{
-$rules=array(
-'name'=>'min:2',
-'email'=>'required|unique:users',
-'password'=>'required|min:4|confirmed',
-'password_confirmation'=>'required|min:4'
+		$rules=array(
+			'name'=>'min:2',
+			'email'=>'required|unique:users',
+			'password'=>'required|min:4|confirmed',
+			'password_confirmation'=>'required|min:4'
 
 
 
-);
-$data = Input::all();
-	$user = array(
-				'email'=>Input::get('email'),
-				'password'=>\Hash::make(Input::get('password')));
+			);
+		$data = Input::all();
+		$user = array(
+			'email'=>Input::get('email'),
+			'password'=>\Hash::make(Input::get('password')));
 
-   $validation = Validator::make($data, $rules);
-	if($validation->passes())
+		$validation = Validator::make($data, $rules);
+		if($validation->passes())
 		{
 			User::create($user);
 			$userdetail = new userDetails;
@@ -89,7 +88,7 @@ $data = Input::all();
 		if(\Auth::check())
 		{
 			\Auth::logout();
-		
+
 			return Redirect::to('/')->with('message','Successfully Logged Out!'); 
 		}
 		else
