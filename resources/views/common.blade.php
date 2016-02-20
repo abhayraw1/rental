@@ -77,22 +77,21 @@ $('.err1').hide();
   <nav class="black lighten-2">
     <div class="nav-wrapper">
 
-      <a href="#" class="brand-logo">Rent<em>All</em></a>
+      <a href="{{ URL::asset('/')}}" class="brand-logo">Rent<em>All</em></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         @if(Auth::check())
 
-        <li><a href="#">POST AD</a></li>
-        <li><a href="#" class="dropdown-button" id='drop' data-activates="dropdown1">
+        <li><a href="{{ URL::asset('addpost') }}">POST AD</a></li>
+        <li><a href="" class="dropdown-button" id='drop' data-activates="dropdown1">
           @if(Session::has('uname'))
           Hi, {{ Session::get('uname') }}
           @endif
           <i class="material-icons right">keyboard_arrow_down</i></a></li>
         <!--Dropdown Structure-->
         <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="#">My Ads</a></li>
-          <li><a href="#">My Cart</a></li>
-          <li><a href="#">My Rent History</a></li>
-          <li><a href="#">My Account</a></li>
+          <li><a href="myads">My Ads</a></li>
+          <li><a href="mycart">My Cart</a></li>
+          <li><a href="myaccount">My Account</a></li>
           <li class="divider"></li>
           <li><a href="logout">Sign Out</a></li>
         </ul>

@@ -11,29 +11,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
-    <body>
-      
-      <nav class="black lighten-2">
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo">&nbspRent<em>All</em></a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">POST AD</a></li>
-            <li><a href="#" class="dropdown-button" data-activates="dropdown1">DASHBOARD<i class="material-icons right">keyboard_arrow_down</i></a></li>
-          </ul>
-        </div>
-      </nav>
-
-      <!--Dropdown Structure-->
-      <ul id='dropdown1' class='dropdown-content txt'>
-        <li><a href="#!">Hi, username</a></li>
-        <li><a href="#!">My Ads</a></li>
-        <li><a href="#!">My Cart</a></li>
-        <li><a href="#!">My Rent History</a></li>
-        <li><a href="#!">My Account</a></li>
-        <li class="divider"></li>
-        <li><a href="#!">Sign Out</a></li>
-      </ul>
-
+    @include('common');
       <br />
       <div class="container grey lighten-4">
         <div class="row">

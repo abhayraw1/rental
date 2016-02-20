@@ -45,25 +45,29 @@ class OpController extends BaseController
 
 	public function createpost(){
 		$user = User::where('email', Session::get('email'))->first();
-		//dd($user);
+		//dd($user->id);
 		if(\Auth::check()){
 			$data = Input::all();
-			//$ext = Input::file('file')->guessClientExtension();
+			//dd(Input::all());
+						//$ext = Input::file('file')->guessClientExtension();
 			$product = new Product;
 			$product->name = $data['title'];
-			$product->user_id = $user;
+			$product->user_id = $user->id;
 			$product->details = $data['details'];
 			$time = '';
 			switch($data['tim']){
 				case 1:
-					$time .= $data['tim'] . 'Days';
-					break;
+				$time .= $data['tim'] . 'Days';
+				break;
 				case 2:
-					$time .= $data['tim'] . 'Weeks';
-					break;
+				$time .= $data['tim'] . 'Weeks';
+				break;
 				case 3:
-					$time .= $data['tim'] . 'Months';
-					break;
+				$time .= $data['tim'] . 'Months';
+				break;
+				default:
+				$time .= $data['tim'] . 'Days';
+				break;
 			}
 
 			//$product->rent_time = $time;
@@ -72,7 +76,7 @@ class OpController extends BaseController
 			$product->cost = $data['cost'];
 			$product->save();
 
-			dd($product);
+			//dd($product);
 		}
 		return Redirect::route('home');
 	}

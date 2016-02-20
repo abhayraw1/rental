@@ -34,7 +34,8 @@
       _token: $('input[name=_token]', x).val()}
       $.post('userlogin', data, function(response){
         if(response == '1'){
-          window.location.href = window.location.href + 'dashboard'; 
+          console.log('sada');
+          window.location.href = window.location.href +'dashboard'; 
         }else{
           $('.err2').show();
         }
@@ -113,7 +114,7 @@ $('.err1').hide();
                     <input type="password" name="password_confirmation" placeholder="Confirm Password"></input>
                     <input type="text" name="college" placeholder="College"></input>
                     <input type="number" name="contact" placeholder="Contact"></input>
-                    <button type="submit" class="btn btn-large blue">SUBMIT</button>
+                    <button type="button" class="btn btn-large blue" id ="signup-button">SUBMIT</button>
                   </form>
                 </div>
               </div>
@@ -131,7 +132,7 @@ $('.err1').hide();
             {!!csrf_field()!!}
                     
                     <input type="password" name="password" placeholder="Password"></input>
-                    <button type="submit" class="btn btn-large blue vertical-align">Login</button>
+                    <button type="button" class="btn btn-large blue vertical-align" id ="login-button">Login</button>
                   </form>
                 </div>
               </div>

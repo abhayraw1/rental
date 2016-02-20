@@ -16,5 +16,6 @@ class Product extends Authenticatable
          'name','user_id','details','image','rent_time','cost'
     ];
     protected $table = 'product';
+    public $timestamps = false;
     
    }
