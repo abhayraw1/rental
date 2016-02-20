@@ -52,7 +52,7 @@
         if(response == '1'){
           //var token;
           console.log('ass');
-          window.location.href = window.location.href + 'dashboard';
+          window.location.href = window.location.href ;
 
         }else{
           $('.err1').hide();
