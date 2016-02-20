@@ -70,44 +70,22 @@ class DashController extends BaseController
 	}
 	public function collegesearch()
 	{
-$clg = Input::get('college');
-		$college = College::where('college_name',$clg)->OrWhere('SKU',$clg)->first();
-		if(!$clg)
-		
+
+		$search = Input::get('college');
+		$college = College::where('college_name',$search)->first();
+		if($college)
 		{
-			$clg = "Null";
+			Session::put('college',$college->college_name);
+			return Redirect::to('dashboard');
 		}
-		else{
-			$emails = UserDetails::where('college_id',$college->id)->get();
-			$email = array();
-			$user = array();
-			foreach ($emails as $em) {
-				$email[] = $em->email; 
-			}
-			foreach ($email as $em) {
-				$user[] = User::where('email',$em)->get()[0]->id;
-			}
+		else
+		{
+			Session::put('message',"College Not Found");
 
-			$products = array();
-			$fpro = array();		
-			$i=0;
-			foreach ($user as $use) {
-
-				$products[$i] = Product::where('user_id',$use)->get();
-				foreach ($products[$i] as $pro) {
-					$fpro[] = Product::where('id',$pro->id)->get()[0]; 
-				}
-				$i++;
-
-			}
-	$products = $fpro;
-	
-		}	
-		return json_encode($fpro);
+			return Redirect::to('mmmm');
+		}
 
 	}
 	public function myads()
-	{
-		
-	}
+	{}
 }

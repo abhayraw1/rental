@@ -4,6 +4,11 @@
 
     <div class="grey lighten-2">
       <div class="row">
+        <style type="text/css">
+        .ui-autocomplete
+{
+    z-index:1999 !important;
+}</style>
         <div class="col s12">
           <h3 class="centre grey-text text-darken-2 centre">{{$clg}}</h3>
         </div>
@@ -11,7 +16,7 @@
       <div class="row">
         <div class="col s5 offset-s3">
           <form method = "post" action = "searchitem">
-            <input type="text" name="item" placeholder="Search Item" class = "auto" id="input"></input>
+            <input type="text" name="item" placeholder="Search Item"   id="input"></input>
           </form>
         </div>
         <div class="col s3">
@@ -32,13 +37,16 @@
       <div class="modal-content">
         <div class="row">
           <div class="col s9">
-            <form>
-              <input type="text" placeholder="Search Item" id="input"></input>
-            </form>
+            <form method = "post" action ="collegesearch">
+              <input type="text" placeholder="Search College"  class ="auto1" name="college" id="inputclg" autocomplete="on"></input>
+              {!!csrf_field()!!}
           </div>
           <div class="col s3">
             <button class="btn" id="btn1">Search</button>
+
           </div>
+
+            </form>
         </div>
       </div>
     </div>
@@ -81,23 +89,24 @@
 
       <script type="text/javascript">
     //autocomplete
-    $(".autocol").autocomplete({
+    $("#inputclg").autocomplete({
       source: "{{URL::asset('autocompletecollege')}}",
       minLength: 1,
       select: function(event,ui)
       {
-        $('.auto').val(ui.item.value);
+        $('#inputclg').val(ui.item.value);
 
 
         }
 
       });
-    $(".auto").autocomplete({
-      source: "{{URL::asset('autocompleteitem')}}",
+    
+    $(".auto1").autocomplete({
+      source: "{{URL::asset('autocompletecollege')}}",
       minLength: 1,
       select: function(event,ui)
       {
-        $('.auto').val(ui.item.value);
+        $('.auto1').val(ui.item.value);
 
 
         }
