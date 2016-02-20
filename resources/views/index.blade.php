@@ -40,9 +40,10 @@
         name: $('input[name=name]', x).val(),
         email: $('input[name=email]', x).val(),
         password: $('input[name=password]', x).val(),
+        password_confirmation: $('input[name=confirm]').val(), 
         college: $('input[name=college]', x).val(),
-        contact: $('input[name=contact]', x).val(),
-        _token: $('input[name=contact]', x).val()
+        contact: $('input[name=number]', x).val(),
+        _token: $('input[name=_token]', x).val()
       };
 
       var data2 = {
@@ -50,22 +51,12 @@
         email: $('input[name=email]', x).val(),
       }
 
+      console.log(data);
+
       $.post('usersignup', data, function(response){
         if(response == '1'){
           //var token;
-          $.get('common', function(response){
-            var a = response.substring(response.lastIndexOf('_token'));
-            var b = c=b.substring(b.indexOf('=')+2, b.indexOf('>')-1);
-            console.log(b);
-            data2._token = b;
-          });
-          $.post('userlogin', data2, function(){
-            if(response == '1'){
-              window.location.href = window.location.href + 'dashboard'; 
-            }else{
-              $('.err2').show();
-            }
-          });
+          window.location.href = window.location.href + 'dashboard'
 
         }else{
           $('.err1').hide();
@@ -97,13 +88,13 @@ $('.err1').hide();
                 <input style="color:#000" type="text" name="name" placeholder="Name" required></input>
                 <input style="color:#000" type="email" name="email"placeholder="Email ID" required></input>
                 <input style="color:#000" type="password" name="password" placeholder="Password" required></input>
-                <input style="color:#000" type="password" placeholder="Confirm Password"></input>
+                <input style="color:#000" type="password" name ="confirm" placeholder="Confirm Password"></input>
                 <input style="color:#000" type="text" name="college" placeholder="College"></input>
                 <input style="color:#000" type="text" name="number" placeholder="Contact"></input>
                 <input type='hidden' name="_token" value="{{ csrf_token() }}">
                 <p class="center-align red-text text-darken-2 err1" >
                   What??<bt>Username and password don't match!!</p>
-                  <button type='submit' class="btn btn-large blue" >SUBMIT</button>
+                  <button type="button" class="btn btn-large blue" id="signup-button">SUBMIT</button>
                 </form>
               </div>
             </div>
