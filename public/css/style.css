@@ -1,12 +1,22 @@
 #head {
-	padding-top: 0.5px !important;
 	background: url('../img/bg1.jpg');
-	height: 600px;
+	position: fixed;
+	width: 100%;
+	height: 720px;
+}
+
+#tail {
+	background-color: rgba(0, 0, 0, 0.51);
+    height: inherit;
+}
+#name {
+	padding-top: 25%;
+	font-weight: 200;
 }
 #subtxt {
 	padding-top: 250px;
 	padding-left: 420px;
-	font-weight: 200;
+	font-weight: 350;
 }
 #btn1 {
 	left: 700px;
@@ -20,10 +30,6 @@
 	position: relative;
 	left: 530px;
 	top: 180px;
-}
-#content {
-	background-color: #ffffff;
-	height: 520px;
 }
 .verticalLine {
 	border-left: thin dotted black;
@@ -69,4 +75,11 @@
 #foo {
 	background-color: black;
 	height: 400px;
+}
+.pic {
+	position: relative;
+	left: 100px;
+}
+.blc {
+	border-left: thin dotted black;
 }

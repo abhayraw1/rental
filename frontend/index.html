@@ -9,6 +9,66 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $('#btn1').click(function(e) {
+      console.log("hi"); 
+      $('html,body').animate({
+       scrollTop: $("#content").offset().top},
+       'slow');
+    });
+
+    $('#login-button').click(function(){
+      var x =$(this).parent();
+      var data = {email: $('input[name=email]', x).val(),
+      password: $('input[name=password]', x).val(),
+      _token: $('input[name=_token]', x).val()}
+      $.post('userlogin', data, function(response){
+        if(response == '1'){
+          window.location.href = window.location.href + 'dashboard'; 
+        }else{
+          $('.err2').show();
+        }
+      });
+
+    });
+
+    $('#signup-button').click(function(){
+      var x = $(this).parent();
+      var data = {
+        name: $('input[name=name]', x).val(),
+        email: $('input[name=email]', x).val(),
+        password: $('input[name=password]', x).val(),
+        password_confirmation: $('input[name=confirm]').val(), 
+        college: $('input[name=college]', x).val(),
+        contact: $('input[name=number]', x).val(),
+        _token: $('input[name=_token]', x).val()
+      };
+
+      var data2 = {
+        name: $('input[name=name]', x).val(),
+        email: $('input[name=email]', x).val(),
+      }
+
+      console.log(data);
+
+      $.post('usersignup', data, function(response){
+        if(response == '1'){
+          //var token;
+          window.location.href = window.location.href + 'dashboard'
+
+        }else{
+          $('.err1').show();
+        }
+      });
+    });
+
+$('.err2').hide();
+$('.err1').hide();
+
+});
+</script>
 </head>
 <body>
   
@@ -36,14 +96,16 @@
               <h3 class="center-align blue-text">SIGN UP</h3>
               <div class="row">
                 <div class="col s12">
-                  <form class="center-align">
-                    <input type="text" placeholder="Name"></input>
-                    <input type="email" placeholder="Email ID"></input>
-                    <input type="password" placeholder="Password"></input>
-                    <input type="password" placeholder="Confirm Password"></input>
-                    <input type="text" placeholder="College"></input>
-                    <input type="number" placeholder="Contact"></input>
-                    <button class="btn btn-large blue">SUBMIT</button>
+                  <form class="center-align" method="post" action="usersignup">
+                    <input type="text" name="name" placeholder="Name"></input>
+                    <input type="email" name="email" placeholder="Email ID"></input>
+                    <input type="password" name="password" placeholder="Password"></input>
+            {!!csrf_field()!!}
+                    
+                    <input type="password" name="password_confirmation" placeholder="Confirm Password"></input>
+                    <input type="text" name="college" placeholder="College"></input>
+                    <input type="number" name="contact" placeholder="Contact"></input>
+                    <button type="submit" class="btn btn-large blue">SUBMIT</button>
                   </form>
                 </div>
               </div>
@@ -56,10 +118,12 @@
               <h3 class="centre-align blue-text">LOGIN</h3>
               <div class="row">
                 <div class="col s12">
-                  <form class="center-align">
-                    <input type="email" placeholder="Email ID"></input>
-                    <input type="password" placeholder="Password"></input>
-                    <button class="btn btn-large blue vertical-align">Login</button>
+                  <form class="center-align" method="post" action="userlogin">
+                    <input type="email" name="email" placeholder="Email ID"></input>
+            {!!csrf_field()!!}
+                    
+                    <input type="password" name="password" placeholder="Password"></input>
+                    <button type="submit" class="btn btn-large blue vertical-align">Login</button>
                   </form>
                 </div>
               </div>
@@ -117,9 +181,10 @@
             <h5 style="font-weight: 200; padding-top: 1px;">FIND ADS IN AND AROUND YOUR COLLEGE</h5>
           </div>
           <br /><br />
-          <form action="#">
-            <input type="text" placeholder=" Search your College" style="background-color: white;"></input>
-            <a href="#" class="btn btn-large waves-effect waves-light green darken-2" style="position: absolute; left: 500px; width: 500px;">Search</a>
+          <form action="collegesearch" method="post">
+            <input type="text" placeholder=" Search your College" class = "auto" style="background-color: white;"></input>
+            {!!csrf_field()!!}
+            <button type="submit" class="btn btn-large waves-effect waves-light green darken-2" style="position: absolute; left: 500px; width: 500px;">Search</button>
           </form>
         </div>
       </div>
@@ -160,7 +225,9 @@
 
 
   <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
       $('#butn').click(function(e) {

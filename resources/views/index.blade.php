@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--Import Google Icon Font-->
-  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-  <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" />
-  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-  <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>rentALL</title>
+
+  <!-- CSS  -->
+  <link href=" https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js" rel="stylesheet">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+ 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
   <script type="text/javascript">
   $(document).ready(function(){
     $('#btn1').click(function(e) {
@@ -70,144 +78,191 @@ $('.err1').hide();
 });
 </script>
 </head>
-
 <body>
-  <div id="head">
-    <div id="log">
-      <a class="btn-large waves-effect waves-light yellow darken-4 modal-trigger" href="#modal1">SIGNUP</a>&nbsp &nbsp
-      <a class="btn-large waves-effect waves-light yellow darken-4 modal-trigger" href="#modal2">LOGIN</a>
+  
 
-
-      <!--Modal1 structure-->
-      <div id="modal1" class="modal">
-        <div class="modal-content">
-          <h3 class="center-align blue-text">SIGN UP</h3>
-          <div class="row">
-            <div class="col s12">
-              <form class="center-align" method="post" action="usersignup">
-                <input style="color:#000" type="text" name="name" placeholder="Name" required></input>
-                <input style="color:#000" type="email" name="email"placeholder="Email ID" required></input>
-                <input style="color:#000" type="password" name="password" placeholder="Password" required></input>
-                <input style="color:#000" type="password" name ="confirm" placeholder="Confirm Password"></input>
-                <input style="color:#000" type="text" name="college" placeholder="College"></input>
-                <input style="color:#000" type="text" name="number" placeholder="Contact"></input>
-                <input type='hidden' name="_token" value="{{ csrf_token() }}">
-                <p class="center-align red-text text-darken-2 err1" >
-                  What??<bt>Username and password don't match!!</p>
-                  <button type="button" class="btn btn-large blue" id="signup-button">SUBMIT</button>
-                </form>
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="col s12 center-align white-text">
+              <br />
+              <h1 style="font-weight: 200">rent<b>ALL</b></h1>
+              <hr style="width: 180px;">
+              <h4 style="font-weight: 200;font-size: 24px;">THE ONLINE PORTAL TO RENT STUFF IN YOUR COLLEGE</h4>
+              <br />
+              <button class="btn btn-large orange darken-2 modal-trigger" href="#modal2">LOGIN</button>
+              &nbsp --or-- &nbsp
+              <button class="btn btn-large blue darken-2 modal-trigger" href="#modal1">SIGNUP</button>
+              <br /><br /><br /><br />
+              <a id="butn" class="btn-floating btn-large waves-effect waves-light red" href="#content"><i class="material-icons">keyboard_arrow_down</i></a>
+            </div>
+        <br><br>
+        
+        <!--Modal1 structure-->
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h3 class="center-align blue-text">SIGN UP</h3>
+              <div class="row">
+                <div class="col s12">
+                  <form class="center-align" method="post" action="usersignup">
+                    <input type="text" name="name" placeholder="Name"></input>
+                    <input type="email" name="email" placeholder="Email ID"></input>
+                    <input type="password" name="password" placeholder="Password"></input>
+            {!!csrf_field()!!}
+                    
+                    <input type="password" name="password_confirmation" placeholder="Confirm Password"></input>
+                    <input type="text" name="college" placeholder="College"></input>
+                    <input type="number" name="contact" placeholder="Contact"></input>
+                    <button type="submit" class="btn btn-large blue">SUBMIT</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <!--Modal2 structure-->
-        <div id="modal2" class="modal">
-          <div class="modal-content">
-            <h3 class="centre-align blue-text">LOGIN</h3>
-            <div class="row">
-              <div class="col s12">
-                <form class="center-align" method="post" action="userlogin">
-                  <input style="color:#000" type="email" name="email" placeholder="Email ID" required></input>
-                  <input style="color:#000" type="password" name="password" placeholder="Password" required></input>
-                  <input type='hidden' name="_token" value="{{ csrf_token() }}">
-                  <p class="center-align red-text text-darken-2 err2" >
-                    What??<bt>Username and password don't match!!</p>
-                    <button type='button' class="btn btn-large blue vertical-align" id='login-button'>Login</button>
+          
+          <!--Modal2 structure-->
+          <div id="modal2" class="modal">
+            <div class="modal-content">
+              <h3 class="centre-align blue-text">LOGIN</h3>
+              <div class="row">
+                <div class="col s12">
+                  <form class="center-align" method="post" action="userlogin">
+                    <input type="email" name="email" placeholder="Email ID"></input>
+            {!!csrf_field()!!}
+                    
+                    <input type="password" name="password" placeholder="Password"></input>
+                    <button type="submit" class="btn btn-large blue vertical-align">Login</button>
                   </form>
                 </div>
               </div>
             </div>
           </div>
 
+      </div>
+    </div>
+    
+    <div class="parallax">
+      <img src="img/bg1.jpg" alt="Unsplashed background img 1">
+    </div>
+  </div>
+
+
+  <div class="container" id="content">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <img src="img/upload.svg" class="pic">
+
+            <p class="light">Post a Free Ad on your college marketplace to sell used books, novels, drafters etc. or to find flat/flatmates, arrange carpools</p>
+          </div>
         </div>
-        <img src="img/logo.jpeg" id="logo">
-        <h5 class="white-text" id="subtxt">THE ONLINE PORTAL TO RENT STUFF IN YOUR COLLEGE</h5>
-        <br />
-        <a class="btn-floating btn-large waves-effect waves-light red" id="btn1" href="#content"><i class="material-icons">keyboard_arrow_down</i></a>
+
+        <div class="col s12 m4 blc">
+          <div class="icon-block">
+            <img src="img/chaticon.svg" class="pic">
+
+            <p class="light">Your college peers interested in your Ad will message you using our in-built chat.</p>
+            <br />
+          </div>
+        </div>
+
+        <div class="col s12 m4 blc">
+          <div class="icon-block">
+            <img src="img/meet.svg" class="pic">
+
+            <p class="light">Meet the person (your college peer/junior/senior) inside the campus to complete the deal.</p>
+          </div>
+        </div>
       </div>
 
-      <div id="content">
-        <div class="row">
-          <div class="col s12 offset-s3">
-            <h4 id="subhead">POST FREE AD FOR YOUR COLLEGE PEERS</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col s4 context">
-            <img src="img/upload.svg" class="svg">
-            <p class="svgtext">Post a Free Ad on your college marketplace to sell used books, novels, drafters etc. or to find flat/flatmates, arrange carpools</p>
-          </div>
-          <div class="col s4 verticalLine context">
-            <img src="img/chaticon.svg" class="svg">
-            <p class="svgtext">Your college peers interested in your Ad will message you using our in-built chat.</p>
-          </div>
-          <div class="col s4 verticalLine context">
-            <img src="img/meet.svg" class="svg">
-            <p class="svgtext">Meet the person (your college peer/junior/senior) inside the campus to complete the deal.</p>
-          </div>
-        </div>
-        <a class="btn btn2 btn-large waves-effect waves-light red">Post an AD</a>
-      </div>
+    </div>
+  </div>
 
-      <div id="search">
+
+  <div class="parallax-container valign-wrapper">
+      <div class="container">
         <div class="row">
-          <div class="col s12 offset-s3 white-text">
-            <h4 id="subhead">FIND ADS IN AND AROUND YOUR COLLEGE</h4>
+          <div class="col s12 offset-s3 white-text text-darken-2">
+            <h5 style="font-weight: 200; padding-top: 1px;">FIND ADS IN AND AROUND YOUR COLLEGE</h5>
           </div>
+          <br /><br />
           <form action="collegesearch" method="post">
-            <input type="text" id="inp" class = "auto"  name="college" placeholder=" Search your College"></input>
+            <input type="text" placeholder=" Search your College" name="college" class = "auto" style="background-color: white;"></input>
             {!!csrf_field()!!}
-            <button type = "submit"  class="btn btn-large waves-effect waves-light green darken-2" id="btn3">Search</button>
+            <button type="submit" class="btn btn-large waves-effect waves-light green darken-2" style="position: absolute; left: 500px; width: 500px;">Search</button>
           </form>
         </div>
-        <div class="row">
-          <div class="col s4 context sertxt">
-            <img src="img/college.svg" class="svg">
-            <p class="svgtext white-text">Select your college and open its marketplace from the search bar.</p>
-          </div>
-          <div class="col s4 verticalLine context sertxt">
-            <img src="img/search.svg" class="svg">
-            <p class="svgtext white-text">Browse through listed Ads. If interested in any Ad, chat with your peer who has posted that Ad.</p>
-          </div>
-          <div class="col s4 verticalLine context sertxt">
-            <img src="img/meet.svg" class="svg">
-            <p class="svgtext white-text">Meet the person (your college peer/junior/senior) inside the campus to complete the deal.</p>
-          </div>
+      </div>
+    <div class="parallax"><img src="img/bg.jpg" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>Contact Us</h4>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.547573532393!2d77.35933649868984!3d28.613346513162625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce541dc34567f%3A0x4fd027cb23d66b19!2sJSS+Academy+Of+Technical+Education!5e0!3m2!1sen!2sin!4v1455962876835" width="1000" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
       </div>
 
-      <footer id="foo">
-        <div id="fav">
-          <i class="mdi mdi-facebook"></i>
+    </div>
+  </div>
+
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">A Product by Rivals for DTU Hackathon.</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project to learn something new.</p>
+
+
         </div>
-      </footer>
-
-      <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
-
-      <script type="text/javascript">
-    //autocomplete
-    $(".auto").autocomplete({
-      source: "{{URL::asset('autocompletecollege')}}",
-      minLength: 1,
-      select: function(event,ui)
-      {
-        $('.auto').val(ui.item.value);
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by Rivals
+      </div>
+    </div>
+  </footer>
 
 
-      }
-
-    });
+  <!--  Scripts-->
+   <script type="text/javascript">
     $(document).ready(function(){
-            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-            $('.modal-trigger').leanModal();
-          });
-
+      $('#butn').click(function(e) {
+        console.log("hi"); 
+        $('html,body').animate({
+         scrollTop: $("#content").offset().top},
+         'slow');
+      });
+    });
     </script>
+    <script>
+      //autocomplete
+      $(".auto").autocomplete({
+        source: "{{URL::asset('autocompletecollege')}}",
+        minLength: 1,
+        select: function(event,ui)
+        {
+          $('.auto').val(ui.item.value);
 
+
+        }
+
+      });
+        $(document).ready(function(){
+          // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+          $('.modal-trigger').leanModal();
+        });
+      </script> 
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
 
   </body>
-  </html>
+</html>
