@@ -30,15 +30,15 @@ class ApiController extends BaseController
 		if(\Auth::attempt($user))
 		{
 			$userdetail = "";
-			$userdetail.= UserDetails::where('email',$user['email'])->pluck('name');
+			$userdetail.= UserDetails::where('email',Input::get('email'))->first()->name;
 			$userdetail.=",";
-			$college = College::where('id',UserDetails::where('email',$user['email'])->pluck('college'))->pluck('college_name');
+			$college = College::where('id',UserDetails::where('email',Input::get('email'))->pluck('college_id'))->first()->college_name;
 			$userdetail.= $college;
 			$userdetail.=",";
-			$userdetail.= UserDetails::where('email',$user['email'])->pluck('email');
+			$userdetail.= Input::get('email');
 			$userdetail.=",";
-			$userdetail.= UserDetails::where('email',$user['email'])->pluck('contact');
-
+			$userdetail.= UserDetails::where('email',$user['email'])->first()->contact;
+			$userdetail.=",";
 			return $userdetail;
 		}
 		else{
@@ -77,7 +77,7 @@ class ApiController extends BaseController
 		else
 		{
 
-			return json_encode($validation->errors());	
+			return "0";	
 		}
 	}
 
