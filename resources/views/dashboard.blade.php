@@ -61,12 +61,12 @@
                   <img src="img/guitar.jpg" class="materialboxed">
                 </div>
                 <div class="col s5" id="border">
-                  <h4>{{$pro[0]->name}}</h4>
-                  <p>Duration: {{$pro[0]->rent_time}}</p>
-                  <p>Details : {!!$pro[0]->details!!}</p>
+                  <h4>{{$pro->name}}</h4>
+                  <p>Duration: {{$pro->rent_time}}</p>
+                  <p>Details : {!!$pro->details!!}</p>
                 </div>
                 <div class="col s4">
-                  <h5>Cost:</h5><h1>&#8377 {{$pro[0]->cost}}</h1>
+                  <h5>Cost:</h5><h1>&#8377 {{$pro->cost}}</h1>
                 </div>
               </div>
             </div>
@@ -75,4 +75,39 @@
         </div>
       </div>
     </div>
+          <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+
+      <script type="text/javascript">
+    //autocomplete
+    $(".autocol").autocomplete({
+      source: "{{URL::asset('autocompletecollege')}}",
+      minLength: 1,
+      select: function(event,ui)
+      {
+        $('.auto').val(ui.item.value);
+
+
+        }
+
+      });
+    $(".auto").autocomplete({
+      source: "{{URL::asset('autocompleteitem')}}",
+      minLength: 1,
+      select: function(event,ui)
+      {
+        $('.auto').val(ui.item.value);
+
+
+        }
+
+      });
+      $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+          });
+
+      </script>
+
       @stop

@@ -21,16 +21,16 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class DashController extends BaseController
 {
 	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-	public function autocompletecollege()
-	{
-		$data = Input::get('term');
-		$resp = array();
-		$queries = College::where('college_name','like','%'.$data.'%' )->orWhere('SKU','like','%'.$data.'%' )->take(10)->get();
-		foreach ($queries as $query) {
-			$resp[] = $query->college_name;
-		}
-		return Response::json($resp);
-	}
+ public function autocompletecollege()
+ {
+  $data = Input::get('term');
+  $resp = array();
+  $queries = College::where('college_name','like','%'.$data.'%' )->orWhere('SKU','like','%'.$data.'%' )->take(10)->get();
+  foreach ($queries as $query) {
+    $resp[] = $query->college_name;
+  }
+  return Response::json($resp);
+ }
 	public function dashboard()
 	{
 		$clg = Session::get('college');
@@ -62,6 +62,8 @@ class DashController extends BaseController
 				$i++;
 
 			}
+	$products = $fpro;
+	
 		}
 		return \View::make('dashboard',compact('clg','products'));
 

@@ -26,11 +26,10 @@ Route::group(['middleware' => ['web']], function () {
 
 
 
-	Route::get('api/usersignup',array('before'=>'csrf','uses'=>'PagesController@usersignup'));
-	Route::get('api/collegesearch',array('before'=>'csrf','uses'=>'DashController@collegesearch'));
-
-	Route::get('api/usersignup',array('before'=>'csrf','uses'=>'PagesController@usersignup'));
-	Route::get('api/userlogin',array('before'=>'csrf','uses'=>'PagesController@userlogin'));
+	Route::get('api/usersignup',array('before'=>'csrf','uses'=>'ApiController@usersignup'));
+	Route::get('api/collegesearch',array('before'=>'csrf','uses'=>'ApiController@collegesearch'));
+	Route::get('api/userlogin',array('before'=>'csrf','uses'=>'ApiController@userlogin'));
+	Route::get('api/logout',array('before'=>'csrf','uses'=>'ApiController@logput'));
 
 
 
