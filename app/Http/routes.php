@@ -9,6 +9,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('logout',array('as'=>'logout','uses'=>'PagesController@logout'));
 	Route::get('/',array('as'=>'home','uses'=>'PagesController@home'));
 	Route::get('dashboard',array('as'=>'dashboard','uses'=>'DashController@dashboard'));
+	Route::get('addpost', ['as'=>'addpost', 'uses'=>'PagesController@addpost']);
 
 	Route::get('/ss', function(){
 		return UserDetails::where('college_id', '2')->pluck('id');
@@ -16,7 +17,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('signup',array('as'=>'signup','uses'=>'PagesController@signup'));
 	Route::get('autocompletecollege',array('as'=>'autocompletecollege','uses'=>'DashController@autocompletecollege'));
 	Route::get('common', function(){
-		return \View::make('common');
+		return \View::make('addpost');
 	});
 	Route::post('searchitem',array('before'=>'csrf','uses'=>'DashController@searchitem'));
 
@@ -24,7 +25,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('collegesearch',array('before'=>'csrf','uses'=>'DashController@collegesearch'));
 
 	Route::post('userlogin',array('before'=>'csrf','uses'=>'PagesController@userlogin'));
-
+	Route::post('addpost', ['as'=>'createpost', 'uses'=>'OpController@createpost']);
 
 
 	Route::get('api/usersignup',array('before'=>'csrf','uses'=>'ApiController@usersignup'));
