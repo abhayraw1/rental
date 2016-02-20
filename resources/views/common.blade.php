@@ -32,9 +32,10 @@
     $('#signup-button').click(function(){
       var x = $(this).parent();
       var data = {
-        name: $('input[name=name]', x).val(),
+       name: $('input[name=name]', x).val(),
         email: $('input[name=email]', x).val(),
         password: $('input[name=password]', x).val(),
+        password_confirmation: $('input[name=confirm]').val(), 
         college: $('input[name=college]', x).val(),
         contact: $('input[name=number]', x).val(),
         _token: $('input[name=_token]', x).val()
