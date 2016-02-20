@@ -17,12 +17,19 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('autocompletecollege',array('as'=>'autocompletecollege','uses'=>'DashController@autocompletecollege'));
 
 
-	Route::get('usersignup',array('uses'=>'PagesController@usersignup'));
-	Route::get('collegesearch',array('uses'=>'DashController@collegesearch'));
+	Route::post('usersignup',array('before'=>'csrf','uses'=>'PagesController@usersignup'));
+	Route::post('collegesearch',array('before'=>'csrf','uses'=>'DashController@collegesearch'));
 
-	Route::get('usersignup',array('uses'=>'PagesController@usersignup'));
-	Route::get('userlogin',array('uses'=>'PagesController@userlogin'));
+	Route::post('usersignup',array('before'=>'csrf','uses'=>'PagesController@usersignup'));
+	Route::post('userlogin',array('before'=>'csrf','uses'=>'PagesController@userlogin'));
 
+
+
+	Route::get('api/usersignup',array('before'=>'csrf','uses'=>'PagesController@usersignup'));
+	Route::get('api/collegesearch',array('before'=>'csrf','uses'=>'DashController@collegesearch'));
+
+	Route::get('api/usersignup',array('before'=>'csrf','uses'=>'PagesController@usersignup'));
+	Route::get('api/userlogin',array('before'=>'csrf','uses'=>'PagesController@userlogin'));
 
 
 

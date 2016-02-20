@@ -52,10 +52,6 @@ $rules=array(
 'name'=>'min:2',
 'email'=>'required|unique:users',
 'password'=>'required|min:4|confirmed',
-'password_confirmation'=>'required|min:4'
-
-
-
 );
 			$data = Input::all();
 
@@ -100,14 +96,9 @@ if($validation->passes())
  	$college = College::where('college_name',$search)->orWhere('SKU',$search)->first();
  	 if($college)
  	 {
- 	 $products = Product::where('user_id',User::where('email',UserDetail::where('college',$search)->pluck('email'))->pluck('id'))->get();
+ 	 $products = Product::where('user_id',User::where('email',UserDetails::where('college',$search)->pluck('email'))->pluck('id'))->get();
+ 	 return json_encode($products);
  	 }
- 	 else
- 	 {
- 	 	Session::put('message',"College Not Found");
- 	 
- 	 	return Redirect::to('/');
- 	 }
-
+ 	 return null;
  }
 }

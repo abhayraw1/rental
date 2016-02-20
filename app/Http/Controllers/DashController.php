@@ -35,13 +35,33 @@ class DashController extends BaseController
  {
  	$clg = Session::get('college');
  	$college = College::where('college_name',$clg)->first();
-	if(!$clg)
+ 	if(!$clg)
 	{
 		$clg = "Null";
 	}
 	else{
-	$products = Product::where('user_id',User::where('college',$college->id)->pluck('id'))->get();
-		
+		$emails = UserDetails::where('college_id',$college->id)->get();
+		$email = array();
+		$user = array();
+		foreach ($emails as $em) {
+		$email[] = $em->email; 
+		}
+foreach ($email as $em) {
+		$user[] = User::where('email',$em)->get()[0]->id;
+	}
+
+$products = array();
+$fpro = array();		
+$i=0;
+foreach ($user as $use) {
+
+	 $products[$i] = Product::where('user_id',$use)->get();
+	 foreach ($products[$i] as $pro) {
+	 $fpro[] = Product::where('id',$pro->id)->get()[0]; 
+	 }
+	 $i++;
+
+}
 	}
 	return \View::make('dashboard',compact('clg','products'));
 
@@ -53,7 +73,7 @@ class DashController extends BaseController
  	$college = College::where('college_name',$search)->first();
  	 if($college)
  	 {
- 	 	Session::put('college',$college);
+ 	 	Session::put('college',$college->college_name);
  	 	return Redirect::to('dashboard');
  	 }
  	 else

@@ -1,6 +1,6 @@
 #head {
 	padding-top: 0.5px !important;
-	background-color: black;
+	background: url('../img/bg1.jpg');
 	height: 600px;
 }
 #subtxt {
