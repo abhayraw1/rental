@@ -16,11 +16,9 @@
 
     <nav class="black lighten-2">
       <div class="nav-wrapper">
-<<<<<<< HEAD
+
         <a href="#" class="brand-logo">Rent<em>All</em></a>
-=======
         <a href="{{URL::asset('/')}}" class="brand-logo">&nbspRent<em>All</em></a>
->>>>>>> 4c0b1a9c90f558a9ae6fc799a1bb1f8e5b80670f
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="#">SIGNUP</a></li>
           <li><a href="#">LOGIN</a></li>
@@ -58,14 +56,14 @@
         </div>
       </div>
     </div>
-    
+
     <!--Modal trigger-->
     <div class="row">
       <div class="col s5 offset-s5">
         <a class="btn btn-large red centre-align modal-trigger" href="#modal1">Change College</a>
       </div>
     </div>
-    
+
     <!--Modal Structure-->
     <div id="modal1" class="modal">
       <div class="modal-content">

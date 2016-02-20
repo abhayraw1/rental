@@ -134,7 +134,6 @@
       <script type="text/javascript">
 
 
-<<<<<<< HEAD
       //autocomplete
       $(".auto").autocomplete({
         source: "{{URL::asset('autocompletecollege')}}",
@@ -142,7 +141,7 @@
         select: function(event,ui)
         {
           $('.auto').val(ui.item.value);
-=======
+
     //autocomplete
     $(".auto").autocomplete({
       source: "{{URL::asset('autocompletecollege')}}",
@@ -150,12 +149,15 @@
       select: function(event,ui)
       {
         $('.auto').val(ui.item.value);
->>>>>>> 4c0b1a9c90f558a9ae6fc799a1bb1f8e5b80670f
 
 
-        } 
+        }
 
       });
+      $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+          });
 
       </script>
 
