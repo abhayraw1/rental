@@ -1,6 +1,6 @@
 #input {
 	background-color: white;
-	border-radius: 4px;
+	border: none;
 }
 #btn1 {
 	height: 45px;
@@ -13,4 +13,7 @@
 }
 .centre {
 	text-align: center;
+}
+#dropdown1 {
+	width: 200px;
 }
