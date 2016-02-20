@@ -100,7 +100,7 @@
               <h4 id="subhead">FIND ADS IN AND AROUND YOUR COLLEGE</h4>
             </div>
             <form action="#">
-              <input type="text" id="inp" placeholder=" Search your College"></input>
+              <input type="text" id="inp" class = "auto" placeholder=" Search your College"></input>
               <a href="#" class="btn btn-large waves-effect waves-light green darken-2" id="btn3">Search</a>
             </form>
           </div>
