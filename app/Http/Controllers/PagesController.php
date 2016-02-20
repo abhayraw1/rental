@@ -56,30 +56,29 @@ class PagesController extends BaseController
 			'email'=>'required|unique:users',
 			'password'=>'required|min:4|confirmed',
 			'password_confirmation'=>'required|min:4'
-
-
-
 			);
 		$data = Input::all();
+
 		$user = array(
 			'email'=>Input::get('email'),
 			'password'=>\Hash::make(Input::get('password')));
 
 		$validation = Validator::make($data, $rules);
-		if($validation->passes())
+		if(!$validation->fails())
 		{
 			User::create($user);
 			$userdetail = new userDetails;
+			$userdetail->email = $user['email'];
 			$userdetail->name = $data['name'];
 			$userdetail->contact = $data['contact'];
-			$collegeid = College::where('college_name',$data['college'])->pluck('id');
+			$collegeid = College::where('college_name',$data['college'])->OrWhere('SKU', $data['college'])->first()->id;
 			$userdetail->college_id = $collegeid;
 			$userdetail->save();
 			$user_sign=User::whereemail(Input::get('email'))->first();
 			\Auth::login($user_sign);
 			return 1;
 		}
-		return 0;
+		return $validation->errors();
 	}
 	public function logout()
 	{
