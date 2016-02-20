@@ -33,7 +33,19 @@ class DashController extends BaseController
  }
  public function dashboard()
  {
- 	$clg = Session::get('college');
+ 	if(Session::get('college'))
+ 	{
+ 		$clg = Session::get('college');
+ 	}
+ 	else{
+ 		if(\Auth::check()){
+
+	 		$clg = College::where('id',UserDetails::where('email',\Auth::user()->email)->pluck('college_id'))->pluck('college_name');
+	 	}
+	 	else {
+	 			$clg = "Delhi Technical University";
+	 	}
+ 	}
  	$college = College::where('college_name',$clg)->first();
  	if(!$clg)
 	{
@@ -63,6 +75,7 @@ foreach ($user as $use) {
 
 }
 	}
+	$products = $fpro;
 	return \View::make('dashboard',compact('clg','products'));
 
  }

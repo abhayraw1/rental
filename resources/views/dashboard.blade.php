@@ -61,12 +61,12 @@
                   <img src="img/guitar.jpg" class="materialboxed">
                 </div>
                 <div class="col s5" id="border">
-                  <h4>{{$pro[0]->name}}</h4>
-                  <p>Duration: {{$pro[0]->rent_time}}</p>
-                  <p>Details : {!!$pro[0]->details!!}</p>
+                  <h4>{{$pro->name}}</h4>
+                  <p>Duration: {{$pro->rent_time}}</p>
+                  <p>Details : {!!$pro->details!!}</p>
                 </div>
                 <div class="col s4">
-                  <h5>Cost:</h5><h1>&#8377 {{$pro[0]->cost}}</h1>
+                  <h5>Cost:</h5><h1>&#8377 {{$pro->cost}}</h1>
                 </div>
               </div>
             </div>
