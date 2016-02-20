@@ -43,24 +43,26 @@
         </div>
         <div class="row">
           <div class="col s6 offset-s3">
-            <form class="center-align">
-              <input type="text" placeholder="Title"></input>
-              <input type="text" placeholder="College"></input>
+            <form class="center-align" METHOD='POST' action='addpost'>
+              <input type="text" name= "title" placeholder="Title"></input>
+              <input type="text" name= "college" placeholder="College"></input>
               <div class="input-field">
-                <select>
+                <select name = "tim">
                   <option value="" disabled selected>Duration:</option>
                   <option value="1">Days</option>
                   <option value="2">Weeks</option>
                   <option value="3">Months</option>
                 </select>
               </div>
-              <input type="number" placeholder="How many?"></input>
-              <input type="number" placeholder="Cost"></input>
-              <input type="text" placeholder="Details"></input>
+              <input type="number" name= "howmany" placeholder="How many?"></input>
+              <input type="number" name= "cost" placeholder="Cost"></input>
+              <input type="text" name= "details" placeholder="Details"></input>
+              <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+
               <div class="file-field input-field">
                 <div class="btn">
                   <span>File</span>
-                  <input type="file">
+                  <input type="file" name="photo">
                 </div>
                 <div class="file-path-wrapper">
                   <input class="file-path validate" type="text">

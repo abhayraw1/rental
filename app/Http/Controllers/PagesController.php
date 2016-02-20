@@ -97,4 +97,11 @@ class PagesController extends BaseController
 			return Redirect::to('login')->with('message','You need to login first!'); 
 		}
 	}
+
+	public function addpost(){
+		if(\Auth::check()){
+			return View::make('addpost');
+		}
+		return Redirect::route('home');
+	}
 }
