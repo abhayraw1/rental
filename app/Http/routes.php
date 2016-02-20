@@ -1,5 +1,6 @@
 <?php
 use App\User;
+use App\UserDetails;
 
 
 Route::group(['middleware' => ['web']], function () {
@@ -10,7 +11,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('dashboard',array('as'=>'dashboard','uses'=>'DashController@dashboard'));
 
 	Route::get('/ss', function(){
-		return User::all();
+		return UserDetails::where('college_id', '2')->pluck('id');
 	});
 	Route::get('signup',array('as'=>'signup','uses'=>'PagesController@signup'));
 	Route::get('autocompletecollege',array('as'=>'autocompletecollege','uses'=>'DashController@autocompletecollege'));
