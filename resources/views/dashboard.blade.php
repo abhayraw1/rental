@@ -17,11 +17,13 @@
         <div class="col s5 offset-s3">
           <form method = "post" action = "searchitem">
             <input type="text" name="item" placeholder="Search Item"   id="input"></input>
-          </form>
+            {!!csrf_field()!!}
         </div>
         <div class="col s3">
-          <button class="btn" id="btn1">Search</button>
+          <button class="btn" type="submit" id="btn1">Search</button>
         </div>
+          </form>
+
       </div>
     </div>
 

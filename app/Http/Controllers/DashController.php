@@ -86,6 +86,26 @@ class DashController extends BaseController
 		}
 
 	}
+
+	public function searchitem()
+	{
+
+		$search = Input::get('item');
+		$college = College::where('college_name',Session::get('college'))->first();
+		if($college)
+		{
+			$products = Product::where('name','like','%'.$search.'%')->get();
+			$clg = Session::get('college');
+			return \View::make('dashboard',compact('clg','products'));
+		}
+		else
+		{
+			Session::put('message',"College Not Found");
+
+			return Redirect::to('mmmm');
+		}
+
+	}
 	public function myads()
 	{}
 }
