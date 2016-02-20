@@ -99,7 +99,7 @@ $('.err1').hide();
                   <input style="color:#000" type="password" name="password" placeholder="Password"></input>
                   <input style="color:#000" type="password" placeholder="Confirm Password"></input>
                   <input style="color:#000" type="text" name="college" placeholder="College"></input>
-                  <input style="color:#000" type="number" name="number" placeholder="Contact"></input>
+                  <input style="color:#000" type="text" name="number" placeholder="Contact"></input>
                   <input type='hidden' name="_token" value="{{ csrf_token() }}">
                   <button type="button" class="btn btn-large blue" id="signup-button">SUBMIT</button>
                 </form>
