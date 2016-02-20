@@ -13,7 +13,7 @@ class UserTableSeeder extends Seeder
     {	
     	$count = College::all()->count();
     	
-    	for($i = 0; $i < $count; $i++){
+    	for($i = 0; $i < $count*10; $i++){
     		DB::table('users')->insert([
     			'active' => 1,
     			'email' => str_random(10).'@gmail.com',
