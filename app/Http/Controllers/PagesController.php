@@ -42,7 +42,9 @@ class PagesController extends BaseController
 			);
 
 		if(\Auth::attempt($user)){
+			$uname = UserDetails::where('email', $user['email'])->first()->name;
 			Session::put('email', $user['email']);
+			Session::put('uname', $uname);
 			return 1;
 		}
 		else{
@@ -76,6 +78,8 @@ class PagesController extends BaseController
 			$userdetail->save();
 			$user_sign=User::whereemail(Input::get('email'))->first();
 			\Auth::login($user_sign);
+			Session::put('uname', $data['name']);
+			Session::put('email', $data['email']);
 			return 1;
 		}
 		return $validation->errors();
