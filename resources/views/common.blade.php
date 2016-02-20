@@ -59,6 +59,12 @@
         }
       });
     });
+    var i = 0;
+    $('#drop').addClass('active'); 
+    $('#drop').click(function(){
+      
+        $(this).addClass('active'); 
+    });
 
 $('.err2').hide();
 $('.err1').hide();
@@ -76,13 +82,17 @@ $('.err1').hide();
         @if(Auth::check())
 
         <li><a href="#">POST AD</a></li>
-        <li><a href="#" class="dropdown-button" data-activates="dropdown1">Hi,Username<i class="material-icons right">keyboard_arrow_down</i></a></li>
+        <li><a href="#" class="dropdown-button" id='drop' data-activates="dropdown1">
+          @if(Session::has('uname'))
+          Hi, {{ Session::get('uname') }}
+          @endif
+          <i class="material-icons right">keyboard_arrow_down</i></a></li>
         <!--Dropdown Structure-->
         <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="myadds">My Ads</a></li>
-          <li><a href="mycart">My Cart</a></li>
-          <li><a href="myrenthistory">My Rent History</a></li>
-          <li><a href="myacc">My Account</a></li>
+          <li><a href="#">My Ads</a></li>
+          <li><a href="#">My Cart</a></li>
+          <li><a href="#">My Rent History</a></li>
+          <li><a href="#">My Account</a></li>
           <li class="divider"></li>
           <li><a href="logout">Sign Out</a></li>
         </ul>
