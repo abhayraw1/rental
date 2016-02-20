@@ -13,7 +13,7 @@ class UserDetails extends Authenticatable
      * @var array
      */
     protected $fillable = [
-         'email','college','contact','name'
+         'email','college_id','contact','name'
     ];
     protected $table = 'user_details';
     

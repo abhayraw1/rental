@@ -5,11 +5,11 @@ use App\User;
 use App\UserDetails;
 use App\College;
 use App\Lend;
+use Validator;
 use View;
 use Redirect;
 use Session;
 use Auth;
-use Validator;
 use Illuminate\Support\Facades\Input;
 use DB;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -17,23 +17,9 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class PagesController extends BaseController
+class ApiController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    public function home()
-    {
-    	return \View::make('index');
-    }
-	public function login()
-	{
-		return\View::make('login');
-	}
-	
-	public function signup()
-	{
-		return\View::make('signup');
-		
-	}
 	public function  userlogin()
 	{
 		$user=array(
@@ -43,15 +29,25 @@ class PagesController extends BaseController
 
 		if(\Auth::attempt($user))
 		{
-			return Redirect::to('dashboard')->with('message','Successfully Logged In!');
+			$userdetail = "";
+			$userdetail.= UserDetails::where('email',$user['email'])->pluck('name');
+			$userdetail.=",";
+			$college = College::where('id',UserDetails::where('email',$user['email'])->pluck('college'))->pluck('college_name');
+			$userdetail.= ;
+			$userdetail.=",";
+			$userdetail.= UserDetails::where('email',$user['email'])->pluck('email');
+			$userdetail.=",";
+			$userdetail.= UserDetails::where('email',$user['email'])->pluck('contact');
+
+			return $userdetail;
 		}
 		else{
-			return Redirect::to('login')->with('message','Your email/password combination is incorrect!')->withInput();
-
+			return "";
 		}
 	}
 	public function  usersignup()
 	{
+		
 $rules=array(
 'name'=>'min:2',
 'email'=>'required|unique:users',
@@ -61,28 +57,27 @@ $rules=array(
 
 
 );
-$data = Input::all();
-	$user = array(
-				'email'=>Input::get('email'),
-				'password'=>\Hash::make(Input::get('password')));
+			$data = Input::all();
 
    $validation = Validator::make($data, $rules);
-	if($validation->passes())
+if($validation->passes())
 		{
+			$user = array(
+				'email'=>Input::get('email'),
+				'password'=>\Hash::make(Input::get('password')));
 			User::create($user);
 			$userdetail = new userDetails;
 			$userdetail->name = $data['name'];
 			$userdetail->contact = $data['contact'];
 			$collegeid = College::where('college_name',$data['college'])->pluck('id');
-			$userdetail->college_id = $collegeid;
-			$userdetail->save();
+			$userdetail->college = $collegeid;
 			$user_sign=User::whereemail(Input::get('email'))->first();
 			\Auth::login($user_sign);
-			return Redirect::to('dashboard')->with('message','Successfully Registered! Now you are logged in!');
+			return "1";
 		}	
 		else{
-			return Redirect::to('signup')->withErrors($validation->errors())->withInput();
-		}
+
+			return "0"	}
 	}
 	public function logout()
 	{
@@ -90,11 +85,29 @@ $data = Input::all();
 		{
 			\Auth::logout();
 		
-			return Redirect::to('/')->with('message','Successfully Logged Out!'); 
+			return "1" ; 
 		}
 		else
 		{
-			return Redirect::to('login')->with('message','You need to login first!'); 
+			return "0"; 
 		}
 	}
+
+ public function collegesearch()
+ {
+
+ 	$search = Input::get('college');
+ 	$college = College::where('college_name',$search)->orWhere('SKU',$search)->first();
+ 	 if($college)
+ 	 {
+ 	 $products = Product::where('user_id',User::where('email',UserDetail::where('college',$search)->pluck('email'))->pluck('id'))->get();
+ 	 }
+ 	 else
+ 	 {
+ 	 	Session::put('message',"College Not Found");
+ 	 
+ 	 	return Redirect::to('/');
+ 	 }
+
+ }
 }

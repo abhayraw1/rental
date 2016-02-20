@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\User;
-use App\UserDetail;
+use App\UserDetails;
 use App\College;
+use App\Product;
+
 use App\Lend;
 use View;
 use Response;
@@ -33,7 +35,14 @@ class DashController extends BaseController
  {
  	$clg = Session::get('college');
  	$college = College::where('college_name',$clg)->first();
+	if(!$clg)
+	{
+		$clg = "Null";
+	}
+	else{
 	$products = Product::where('user_id',User::where('college',$college->id)->pluck('id'))->get();
+		
+	}
 	return \View::make('dashboard',compact('clg','products'));
 
  }
