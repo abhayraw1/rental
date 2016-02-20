@@ -98,7 +98,7 @@ $('.err1').hide();
                   <input style="color:#000" type="text" name="name" placeholder="Name"></input>
                   <input style="color:#000" type="email" name="email"placeholder="Email ID"></input>
                   <input style="color:#000" type="password" name="password" placeholder="Password"></input>
-                  <input style="color:#000" type="password" placeholder="Confirm Password"></input>
+                  <input style="color:#000" type="password" name="confirm" placeholder="Confirm Password"></input>
                   <input style="color:#000" type="text" name="college" placeholder="College"></input>
                   <input style="color:#000" type="text" name="number" placeholder="Contact"></input>
                   <input type='hidden' name="_token" value="{{ csrf_token() }}">
