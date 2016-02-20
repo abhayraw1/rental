@@ -75,4 +75,39 @@
         </div>
       </div>
     </div>
+          <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+
+      <script type="text/javascript">
+    //autocomplete
+    $(".autocol").autocomplete({
+      source: "{{URL::asset('autocompletecollege')}}",
+      minLength: 1,
+      select: function(event,ui)
+      {
+        $('.auto').val(ui.item.value);
+
+
+        }
+
+      });
+    $(".auto").autocomplete({
+      source: "{{URL::asset('autocompleteitem')}}",
+      minLength: 1,
+      select: function(event,ui)
+      {
+        $('.auto').val(ui.item.value);
+
+
+        }
+
+      });
+      $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+          });
+
+      </script>
+
       @stop
