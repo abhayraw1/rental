@@ -16,11 +16,7 @@
 
     <nav class="black lighten-2">
       <div class="nav-wrapper">
-<<<<<<< HEAD
-        <a href="#" class="brand-logo">Rent<em>All</em></a>
-=======
         <a href="{{URL::asset('/')}}" class="brand-logo">&nbspRent<em>All</em></a>
->>>>>>> 4c0b1a9c90f558a9ae6fc799a1bb1f8e5b80670f
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="#">SIGNUP</a></li>
           <li><a href="#">LOGIN</a></li>
@@ -31,7 +27,7 @@
     </nav>
 
     <!--Dropdown Structure-->
-    <ul id='dropdown1' class='dropdown-content txt'>
+    <ul id='dropdown1' class='dropdown-content'>
       <li><a href="#!">Hi, username</a></li>
       <li><a href="#!">My Ads</a></li>
       <li><a href="#!">My Cart</a></li>
@@ -44,13 +40,13 @@
     <div class="grey lighten-2">
       <div class="row">
         <div class="col s12">
-          <h3 class="centre grey-text text-darken-2 centre">COLLEGE NAME</h3>
+          <h3 class="centre grey-text text-darken-2 centre">{{$clg}}</h3>
         </div>
       </div>
       <div class="row">
         <div class="col s5 offset-s3">
-          <form>
-            <input type="search" placeholder="Search Item" id="input"></input>
+          <form method = "post" action = "searchitem">
+            <input type="text" name="item" placeholder="Search Item" class = "auto" id="input"></input>
           </form>
         </div>
         <div class="col s3">
@@ -72,7 +68,7 @@
         <div class="row">
           <div class="col s9">
             <form>
-              <input type="search" placeholder="Search Item" id="input"></input>
+              <input type="text" placeholder="Search Item" id="input"></input>
             </form>
           </div>
           <div class="col s3">
