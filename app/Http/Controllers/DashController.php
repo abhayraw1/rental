@@ -80,7 +80,7 @@ foreach ($user as $use) {
  	 {
  	 	Session::put('message',"College Not Found");
  	 
- 	 	return Redirect::to('/');
+ 	 	return Redirect::to('mmmm');
  	 }
 
  }

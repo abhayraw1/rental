@@ -1,42 +1,6 @@
-<!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-      <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" />
-      <link type="text/css" rel="stylesheet" href="css/style2.css"  media="screen,projection"/>
+@extends('common')
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-
-    <body>
-
-    <nav class="black lighten-2">
-      <div class="nav-wrapper">
-
-        <a href="#" class="brand-logo">Rent<em>All</em></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="#">SIGNUP</a></li>
-          <li><a href="#">LOGIN</a></li>
-          <li><a href="#">POST AD</a></li>
-          <li><a href="#" class="dropdown-button" data-activates="dropdown1">DASHBOARD<i class="material-icons right">keyboard_arrow_down</i></a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <!--Dropdown Structure-->
-    <ul id='dropdown1' class='dropdown-content'>
-      <li><a href="#!">Hi, username</a></li>
-      <li><a href="#!">My Ads</a></li>
-      <li><a href="#!">My Cart</a></li>
-      <li><a href="#!">My Rent History</a></li>
-      <li><a href="#!">My Account</a></li>
-      <li class="divider"></li>
-      <li><a href="#!">Sign Out</a></li>
-    </ul>
+@section('content')
 
     <div class="grey lighten-2">
       <div class="row">
@@ -111,15 +75,4 @@
         </div>
       </div>
     </div>
-    <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script>
-        $(document).ready(function(){
-          // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-          $('.modal-trigger').leanModal();
-        });
-      </script>
-      <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
-    </body>
-  </html>
+      @stop
