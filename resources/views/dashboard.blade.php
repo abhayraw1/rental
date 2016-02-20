@@ -16,7 +16,11 @@
 
     <nav class="black lighten-2">
       <div class="nav-wrapper">
+<<<<<<< HEAD
         <a href="#" class="brand-logo">Rent<em>All</em></a>
+=======
+        <a href="{{URL::asset('/')}}" class="brand-logo">&nbspRent<em>All</em></a>
+>>>>>>> 4c0b1a9c90f558a9ae6fc799a1bb1f8e5b80670f
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="#">SIGNUP</a></li>
           <li><a href="#">LOGIN</a></li>
@@ -87,6 +91,8 @@
     <div class="container">
       <div class="row">
         <div class="col s12">
+                @foreach($products as $pro)
+
           <a href="#">
             <div class="card black-text">
               <div class="row">
@@ -94,17 +100,17 @@
                   <img src="img/guitar.jpg" class="materialboxed">
                 </div>
                 <div class="col s5" id="border">
-                  <h4>Acoustic Guitar</h4>
-                  <p>Duration: 1 week</p>
-                  <p>College: JSSATE, Noida</p>
-                  <p>Details : Lorem ipsum dolor sit amet, consectetur adipisicing...</p>
+                  <h4>{{$pro[0]->name}}</h4>
+                  <p>Duration: {{$pro[0]->rent_time}}</p>
+                  <p>Details : {!!$pro[0]->details!!}</p>
                 </div>
                 <div class="col s4">
-                  <h5>Cost:</h5><h1>&#8377 25</h1>
+                  <h5>Cost:</h5><h1>&#8377 {{$pro[0]->cost}}</h1>
                 </div>
               </div>
             </div>
           </a>
+          @endforeach
         </div>
       </div>
     </div>
