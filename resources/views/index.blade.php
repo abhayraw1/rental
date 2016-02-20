@@ -59,7 +59,7 @@
           window.location.href = window.location.href + 'dashboard'
 
         }else{
-          $('.err1').hide();
+          $('.err1').show();
         }
       });
     });

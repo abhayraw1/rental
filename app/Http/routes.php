@@ -19,6 +19,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('common', function(){
 		return \View::make('addpost');
 	});
+	Route::post('searchitem',array('before'=>'csrf','uses'=>'DashController@searchitem'));
 
 	Route::post('usersignup',array('before'=>'csrf','uses'=>'PagesController@usersignup'));
 	Route::post('collegesearch',array('before'=>'csrf','uses'=>'DashController@collegesearch'));
