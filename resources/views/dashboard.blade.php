@@ -16,12 +16,8 @@
 
     <nav class="black lighten-2">
       <div class="nav-wrapper">
-<<<<<<< HEAD
-=======
 
         <a href="#" class="brand-logo">Rent<em>All</em></a>
->>>>>>> 9a225b2ed3453c319fc34525e14c11030d1f16d9
-        <a href="{{URL::asset('/')}}" class="brand-logo">&nbspRent<em>All</em></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="#">SIGNUP</a></li>
           <li><a href="#">LOGIN</a></li>
